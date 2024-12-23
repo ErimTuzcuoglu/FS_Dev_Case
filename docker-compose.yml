@@ -6,11 +6,13 @@ services:
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=${NODE_ENV}
+      - MONGO_URL=mongodb://mongo:27017/FS_Dev_Case
     env_file: 
       - .env
       - .env.${NODE_ENV}
     ports:
       - "${PORT}:${PORT}"
+      - "3746:3746"
     volumes:
       - .:/backend
       - /backend/node_modules

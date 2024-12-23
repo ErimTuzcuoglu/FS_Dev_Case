@@ -10,6 +10,6 @@ export default {
     uri: process.env.MONGO_URL || 'mongodb://localhost:27017/FS_Dev_Case'
   },
   key: process.env.KEY,
-  secret: process.env.secret,
+  secret: process.env.SECRET,
   jwtSecret: process.env.JWT_SECRET
 };
