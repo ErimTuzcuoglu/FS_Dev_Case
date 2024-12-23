@@ -14,14 +14,14 @@ const lastPairFetched = new Date();
 let counter = 1;
 let tradingPairs;
 
-const subscribeToTicker = (pairs) => pairs.forEach(pair => Binance.subscribeToTicker(pair, ws));
+const subscribeToTicker = (pairs, ws) => pairs.forEach(pair => Binance.subscribeToTicker(pair, ws));
 
 const getBinanceTradingPairs = (ws) => {
     return Binance.getTradingPairs()
         .then(pairs => {
             tradingPairs = pairs;
             ws.send(JSON.stringify({ type: 'tradingPairs', pairs }));
-            subscribeToTicker(pairs);
+            subscribeToTicker(pairs, ws);
         })
         .catch(err => {
             ws.send(JSON.stringify({ type: 'error', message: 'Failed to fetch trading pairs' }))
@@ -38,7 +38,7 @@ wss.on('connection', (ws, req) => {
         getBinanceTradingPairs(ws);
     } else {
         ws.send(tradingPairs);
-        subscribeToTicker(tradingPairs);
+        subscribeToTicker(tradingPairs, ws);
     }
 
     ws.on('message', async (message) => {
