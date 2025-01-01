@@ -1,12 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import config from './config/appConfig';
-import expressConfig from './loaders/server/express';
-import routes from './api/routes/index';
-import mongoDbConnection from './loaders/database/mongoDB/connection';
+import expressConfig from './core/server/express';
+import routes from './core/server/routes/index';
+import mongoDbConnection from './core/database/mongoDB/connection';
 import socket from './api/socket/socket';
 // middlewares
-import { errorHandlingMiddleware } from './loaders/server/middlewares/errorHandlingMiddleware';
+import { errorHandlingMiddleware } from './core/server/middlewares/errorHandlingMiddleware';
 
 const app = express();
 const router = express.Router();

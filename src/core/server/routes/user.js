@@ -1,9 +1,9 @@
 import express from 'express';
 
-import userController from '../controllers/userController';
-import userDbRepository from '../../application/repositories/userRepository';
-import userDbRepositoryMongoDB from '../../loaders/database/mongoDB/repositories/userModelRepository';
-import authenticateToken from '../../application/middlewares/authenticateToken';
+import userController from '../../../api/controllers/userController';
+import userDbRepository from '../../../application/repositories/userRepository';
+import userDbRepositoryMongoDB from '../../database/mongoDB/repositories/userModelRepository';
+import authenticateToken from '../../../application/middlewares/authenticateToken';
 
 export default function userRouter() {
   const router = express.Router();

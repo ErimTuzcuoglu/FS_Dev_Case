@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import app from '../../app';
+import app from '../../src/app';
 import supertest from 'supertest';
 
 let mongoServer;
