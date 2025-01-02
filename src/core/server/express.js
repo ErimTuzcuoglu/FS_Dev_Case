@@ -14,8 +14,8 @@ export default function expressConfig(app, config) {
     bodyParser.urlencoded({
       limit: '50mb',
       extended: true,
-      parameterLimit: 50000
-    })
+      parameterLimit: 50000,
+    }),
   );
 
   app.use((req, res, next) => {
@@ -24,19 +24,19 @@ export default function expressConfig(app, config) {
     // Request methods you wish to allow
     res.setHeader(
       'Access-Control-Allow-Methods',
-      'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+      'GET, POST, OPTIONS, PUT, PATCH, DELETE',
     );
     // Request headers you wish to allow
     res.setHeader(
       'Access-Control-Allow-Headers',
-      'X-Requested-With, Content-type, Userization, Cache-control, Pragma'
+      'X-Requested-With, Content-type, Userization, Cache-control, Pragma',
     );
     // Pass to next layer of middleware
     next();
   });
   app.use(morgan('combined'));
   app.use(responseMiddleware);
-  swaggerDocs(app);
+  swaggerDocs(app, config);
   // graceful shutdown
   process.on('SIGTERM', () => {
     console.log('SIGTERM signal received.');

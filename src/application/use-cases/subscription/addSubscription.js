@@ -1,3 +1,3 @@
 export default async function addSubscription(userId, pair, subscriptionRepository) {
-    return subscriptionRepository.addSubscription(userId, pair);
+  return subscriptionRepository.addSubscription(userId, pair);
 };

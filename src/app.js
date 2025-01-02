@@ -14,10 +14,10 @@ const router = express.Router();
 expressConfig(app, config);
 
 // DB configuration and connection create
-if (process.env.NODE_ENV !== "test") {
-    mongoDbConnection(mongoose, config, {
-        connectTimeoutMS: 1000
-    }).connectToMongo();
+if (process.env.NODE_ENV !== 'test') {
+  mongoDbConnection(mongoose, config, {
+    connectTimeoutMS: 1000,
+  }).connectToMongo();
 }
 
 // routes for each endpoint
@@ -27,8 +27,8 @@ routes(app, router);
 app.use(errorHandlingMiddleware);
 
 if (process.env.NODE_ENV !== 'test') {
-    app.listen(config.port, () => {
-        console.log(`Server is listening on port ${config.port}`);
-    });
+  app.listen(config.port, () => {
+    console.log(`Server is listening on port ${config.port}`);
+  });
 }
 export default app;

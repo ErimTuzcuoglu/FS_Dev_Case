@@ -7,17 +7,17 @@ let mongoServer;
 let request;
 
 beforeAll(async () => {
-    mongoServer = await MongoMemoryServer.create();
-    const mongoUri = mongoServer.getUri();
+  mongoServer = await MongoMemoryServer.create();
+  const mongoUri = mongoServer.getUri();
 
-    await mongoose.connect(mongoUri);
+  await mongoose.connect(mongoUri);
 
-    request = supertest(app);
+  request = supertest(app);
 });
 
 afterAll(async () => {
-    await mongoose.disconnect();
-    await mongoServer.stop();
+  await mongoose.disconnect();
+  await mongoServer.stop();
 });
 
 export { request }; 

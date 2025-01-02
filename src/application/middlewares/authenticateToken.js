@@ -15,7 +15,7 @@ export default async (req, res, next) => {
     next();
   } catch (error) {
     if (error.message === 'invalid token') {
-      next(new CustomError('Invalid Token', 401))
+      next(new CustomError('Invalid Token', 401));
     }
     next(error);
   }

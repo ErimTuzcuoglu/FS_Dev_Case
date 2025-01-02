@@ -6,7 +6,7 @@ export default function connection(mongoose, config, options) {
         () => {},
         (err) => {
           console.info('Mongodb error', err);
-        }
+        },
       )
       .catch((err) => {
         console.log('ERROR:', err);
@@ -29,12 +29,12 @@ export default function connection(mongoose, config, options) {
   mongoose.connection.on('disconnected', () => {
     console.error(
       `MongoDB disconnected! Reconnecting in ${options.reconnectInterval / 1000
-      }s...`
+      }s...`,
     );
     setTimeout(() => connectToMongo(), options.reconnectInterval);
   });
 
   return {
-    connectToMongo
+    connectToMongo,
   };
 }
