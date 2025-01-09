@@ -1,25 +1,22 @@
-import express from 'express';
-
+import {authenticateToken} from '../../../application/middlewares';
 import userController from '../../../api/controllers/userController';
 import userDbRepository from '../../../application/repositories/userRepository';
 import userDbRepositoryMongoDB from '../../database/mongoDB/repositories/userModelRepository';
-import authenticateToken from '../../../application/middlewares/authenticateToken';
+import {Router} from '../router';
 
-export default function userRouter() {
-  const router = express.Router();
+const router = Router();
 
-  const controller = userController(
-    userDbRepository,
-    userDbRepositoryMongoDB,
-  );
+const controller = userController(
+  userDbRepository,
+  userDbRepositoryMongoDB,
+);
 
-  router.get('/', controller.fetchAllUsers);
-  router.get('/:id', authenticateToken, controller.fetchUserById);
-  router.post('/', controller.addNewUser);
-  router.post('/login', controller.login);
-  router.post('/logout/:id', controller.logout);
-  router.put('/:id', authenticateToken, controller.updateUserById);
-  router.delete('/:id', authenticateToken, controller.deleteUserById);
+router.get('/', controller.fetchAllUsers);
+router.get('/:id', authenticateToken, controller.fetchUserById);
+router.post('/', controller.addNewUser);
+router.post('/login', controller.login);
+router.post('/logout/:id', controller.logout);
+router.put('/:id', authenticateToken, controller.updateUserById);
+router.delete('/:id', authenticateToken, controller.deleteUserById);
 
-  return router;
-}
+export default router;

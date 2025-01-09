@@ -1,3 +1,5 @@
+import docs from '../api/docs';
+
 export default {
   definition: {
     openapi: '3.0.0',
@@ -17,7 +19,17 @@ export default {
         description: `${process.env.NODE_ENV} Server`,
       },
     ],
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+    security: [{BearerAuth: []}],
+    paths: docs,
   },
-  // looks for configuration in specified directory
-  apis: [(require('path')).join(__dirname, '../api/docs', '*')],
+  apis: [(require('path')).join(__dirname, '../core/server/routes', '*')],
 };

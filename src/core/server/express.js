@@ -1,15 +1,14 @@
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
-import { responseMiddleware } from './middlewares/responseMiddleware';
+import {responseMiddleware} from './middlewares/responseMiddleware';
 import swaggerDocs from './swagger/swagger';
-
 
 export default function expressConfig(app, config) {
   // security middleware
   app.use(helmet());
 
-  app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(bodyParser.json({limit: '50mb'}));
   app.use(
     bodyParser.urlencoded({
       limit: '50mb',

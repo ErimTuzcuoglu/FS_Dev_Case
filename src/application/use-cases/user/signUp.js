@@ -12,7 +12,7 @@ export default async function signUp(userDTO) {
     throw new Error('Some fields are empty or not found!');
   }
 
-  const user = await userRepository.findBy({ email });
+  const user = await userRepository.findBy({email});
   if (user && user.length > 0) {
     throw new CustomError('Email already exists', 400);
   }

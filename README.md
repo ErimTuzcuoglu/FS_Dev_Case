@@ -1,6 +1,6 @@
 # FS_Dev_Case Backend Case
 
-This project is a Node.js application designed to work in both development and production environments using Docker. The application is built with modern JavaScript frameworks and has room for future improvements, including linting and bundling optimizations for production.
+This project is a Node.js application designed to work in both development and production environments using Docker. The application is built with modern JavaScript frameworks.
 ## Prerequisites
 
    - Node.js version 18 or higher: Make sure your Node.js version is compatible. You can verify your version with:
@@ -48,99 +48,6 @@ In Development, it redirects to /docs on default route (/).
 #### Production
     http://localhost:5000/docs/
 
-
-# WebSocket Usage
-
-This project supports real-time data streaming using the WebSocket protocol. The WebSocket server allows users to subscribe to trading pairs and receive live updates about their prices and related information.
-
-## Connecting to the WebSocket Server
-
-The WebSocket server is accessible via the following URLs:
-
-- **Development**: `ws://localhost:3746`
-- **Production**: `ws://localhost:3746`
-
-## WebSocket API
-
-Once connected, clients can perform the following actions by sending messages in JSON format.
-
-### Message Format
-
-#### **Sample Message**
-```json
-{
-  "action": "subscribe",
-  "pair": "BTCUSDT"
-}
-```
-
-### Supported Actions
-
-1. **`subscribe`**: Subscribe to a trading pair to receive live updates.  
-   - **Parameters**:
-     - `pair` (string): The trading pair to subscribe to (e.g., `BTCUSDT`).
-   - **Example**:
-     ```json
-     {
-       "action": "subscribe",
-       "pair": "BTCUSDT"
-     }
-     ```
-
-2. **`unsubscribe`**: Unsubscribe from a trading pair.  
-   - **Parameters**:
-     - `pair` (string): The trading pair to unsubscribe from (e.g., `BTCUSDT`).
-   - **Example**:
-     ```json
-     {
-       "action": "unsubscribe",
-       "pair": "BTCUSDT"
-     }
-     ```
-
-3. **`getSubscriptions`**: Retrieve the list of currently subscribed trading pairs.  
-   - **Example**:
-     ```json
-     {
-       "action": "getSubscriptions"
-     }
-     ```
-
-### Server Responses
-
-The WebSocket server sends updates and confirmations in JSON format.
-
-#### **Real-Time Price Update**
-```json
-{
-  "pair": "BTCUSDT",
-  "price": "27340.12"
-}
-```
-
-#### **Subscription Confirmation**
-```json
-{
-  "action": "subscribed",
-  "pair": "BTCUSDT"
-}
-```
-
-#### **Unsubscription Confirmation**
-```json
-{
-  "action": "unsubscribed",
-  "pair": "BTCUSDT"
-}
-```
-
-#### **Current Subscriptions**
-```json
-{
-  "action": "subscriptions",
-  "pairs": ["BTCUSDT", "ETHUSDT"]
-}
-```
 
 ## Testing
 

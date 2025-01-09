@@ -13,7 +13,7 @@ export default async function login(userDTO) {
     throw new Error('Some fields are empty or not found!');
   }
 
-  const user = await userRepository.findBy({ email });
+  const user = await userRepository.findBy({email});
   if (!user) {
     throw new CustomError('User not found', 400);
   }
@@ -26,8 +26,8 @@ export default async function login(userDTO) {
     throw new CustomError('Invalid credentials', 400);
   }
   // Generate JWT
-  const token = jwt.sign({ id: user.id, username: user.username }, appConfig.jwtSecret, { expiresIn: '1h' });
-  const { name, subscriptions, _id, createdAt, updatedAt } = user;
+  const token = jwt.sign({id: user.id, username: user.username}, appConfig.jwtSecret, {expiresIn: '1h'});
+  const {name, subscriptions, _id, createdAt, updatedAt} = user;
   return {
     email,
     name,

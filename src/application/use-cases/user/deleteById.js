@@ -6,4 +6,3 @@ export default function deleteById(id, userRepository) {
     return userRepository.deleteById(id);
   });
 }
-  

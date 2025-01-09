@@ -1,6 +1,9 @@
+import {Router} from '../router';
 import userRouter from './user';
 
-export default function routes(app, router) {
-  router.use('/users', userRouter());
-  app.use('/api', router);
-}
+const router = Router();
+
+router.use('/users', userRouter);
+
+export default router;
+

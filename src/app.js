@@ -4,12 +4,10 @@ import config from './config/appConfig';
 import expressConfig from './core/server/express';
 import routes from './core/server/routes/index';
 import mongoDbConnection from './core/database/mongoDB/connection';
-import socket from './api/socket/socket';
 // middlewares
-import { errorHandlingMiddleware } from './core/server/middlewares/errorHandlingMiddleware';
+import {errorHandlingMiddleware} from './core/server/middlewares/errorHandlingMiddleware';
 
 const app = express();
-const router = express.Router();
 // express.js configuration (middlewares etc.)
 expressConfig(app, config);
 
@@ -21,7 +19,7 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // routes for each endpoint
-routes(app, router);
+app.use('/api', routes);
 
 // error handling middleware
 app.use(errorHandlingMiddleware);

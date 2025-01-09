@@ -7,13 +7,8 @@ services:
       dockerfile: Dockerfile
     environment:
       NODE_ENV: "${NODE_ENV}"
-      DB_URL: "mongodb://mongo:27017/FS_Dev_Case"
-    env_file:
-      - .env.${NODE_ENV}
     ports:
       - "${PORT}:${PORT}" # App port
-      - "${SOCKET_PORT}:${SOCKET_PORT}" # Socket port
-      - "${DEBUG_PORT}:${DEBUG_PORT}" # Debug port
     volumes:
       - .:/app
       - /app/node_modules

@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach to Backend",
+            "name": "Attach to Docker Backend",
             "type": "node",
             "request": "attach",
             "port": 9229,
@@ -15,7 +15,19 @@
             ],
             "localRoot": "${workspaceFolder}",
             "remoteRoot": "/app",
-            "protocol": "inspector",
+            "restart": true
+        },
+        {
+            "name": "Attach to Nodemon Backend",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "address": "localhost",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "${workspaceFolder}",
             "restart": true
         }
     ]

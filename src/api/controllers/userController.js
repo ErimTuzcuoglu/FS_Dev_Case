@@ -1,4 +1,4 @@
-import { user as userCases } from '../../application/use-cases';
+import {user as userCases} from '../../application/use-cases';
 
 export default function userController(
   userRepository,
@@ -9,7 +9,7 @@ export default function userController(
   const fetchAllUsers = async (req, res, next) => {
     try {
       const users = await userCases.getAll(dbRepository);
-      return res.apiResponse(users);
+      return res.customResult(users);
     } catch (error) {
       return next(error);
     }
@@ -18,7 +18,7 @@ export default function userController(
   const fetchUserById = async (req, res, next) => {
     try {
       const user = await userCases.findById(req.params.id, dbRepository);
-      return res.apiResponse(user);
+      return res.customResult(user);
     } catch (error) {
       return next(error);
     }
@@ -26,12 +26,12 @@ export default function userController(
   };
 
   const addNewUser = async (req, res, next) => {
-    const { name, email, password } = req.body;
+    const {name, email, password} = req.body;
 
     try {
-      const createdUser = await userCases.signUp({ name, email, password, userRepository: dbRepository });
+      const createdUser = await userCases.signUp({name, email, password, userRepository: dbRepository});
       res.status(201);
-      return res.apiResponse(createdUser);
+      return res.customResult(createdUser);
     } catch (error) {
       return next(error);
     }
@@ -40,7 +40,7 @@ export default function userController(
   const deleteUserById = async (req, res, next) => {
     try {
       await userCases.deleteById(req.params.id, dbRepository);
-      return res.apiResponse('User Deleted Succesfully');
+      return res.customResult('User Deleted Succesfully');
     } catch (error) {
       return next(error);
     }
@@ -48,7 +48,7 @@ export default function userController(
   };
 
   const updateUserById = async (req, res, next) => {
-    const { name, email, password } = req.body;
+    const {name, email, password} = req.body;
 
     try {
       const updatedUser = await userCases.updateById({
@@ -58,31 +58,31 @@ export default function userController(
         password,
         userRepository: dbRepository,
       });
-      return res.apiResponse(updatedUser);
+      return res.customResult(updatedUser);
     } catch (error) {
       return next(error);
     }
   };
 
   const login = async (req, res, next) => {
-    const { email, password } = req.body;
+    const {email, password} = req.body;
 
     try {
-      const loginResponse = await userCases.login({ email, password, userRepository: dbRepository });
+      const loginResponse = await userCases.login({email, password, userRepository: dbRepository});
       res.status(201);
-      return res.apiResponse(loginResponse);
+      return res.customResult(loginResponse);
     } catch (error) {
       return next(error);
     }
   };
 
   const logout = async (req, res, next) => {
-    const { id } = req.query;
+    const {id} = req.query;
 
     try {
-      const logoutResponse = await userCases.logout({ id, userRepository: dbRepository });
+      const logoutResponse = await userCases.logout({id, userRepository: dbRepository});
       res.status(201);
-      return res.apiResponse(logoutResponse);
+      return res.customResult(logoutResponse);
     } catch (error) {
       return next(error);
     }

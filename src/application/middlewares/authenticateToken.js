@@ -1,22 +1,11 @@
-import jwt from 'jsonwebtoken';
-import CustomError from '../errors/CustomError';
-import appConfig from '../../config/appConfig';
+import AuthService from '../../core/services/AuthService';
 
 export default async (req, res, next) => {
   try {
     const token = req.headers['authorization']?.split('Bearer ')[1];
-
-    if (!token) {
-      next(new CustomError('Access denied', 401));
-    }
-
-    await jwt.verify(token, appConfig.jwtSecret);
-
+    await AuthService.verify(token);
     next();
   } catch (error) {
-    if (error.message === 'invalid token') {
-      next(new CustomError('Invalid Token', 401));
-    }
     next(error);
   }
 };

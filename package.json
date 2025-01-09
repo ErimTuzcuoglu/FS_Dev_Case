@@ -7,14 +7,13 @@
         "build": "webpack --mode production",
         "production": "NODE_ENV=production node ./dist/bundle.js",
         "development": "NODE_ENV=development nodemon --watch . --inspect=0.0.0.0:9229 --exec babel-node ./src/app.js",
-        "docker:development": "docker-compose --env-file .env.development up",
-        "docker:production": "docker-compose --env-file .env.production up",
+        "docker:development": "docker-compose --env-file .env.development -f docker-compose.yml -f docker-compose.development.yml up",
+        "docker:production": "yarn build && docker-compose --env-file .env.production  -f docker-compose.yml -f docker-compose.production.yml up -d",
         "lint:fix": "npx eslint ./src --fix",
         "test": "jest ./test"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
-        "binance-api-node": "^0.12.9",
         "body-parser": "^1.20.3",
         "debug": "~2.6.9",
         "dotenv": "^16.4.5",
@@ -24,8 +23,7 @@
         "mongoose": "^8.7.2",
         "morgan": "~1.9.1",
         "swagger-jsdoc": "^6.2.8",
-        "swagger-ui-express": "^5.0.1",
-        "ws": "^8.18.0"
+        "swagger-ui-express": "^5.0.1"
     },
     "devDependencies": {
         "@babel/cli": "^7.25.7",

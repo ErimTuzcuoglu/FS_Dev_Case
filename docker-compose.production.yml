@@ -1,0 +1,5 @@
+version: '3'
+services:
+  backend:
+    environment:
+      DB_URL: "mongodb://mongo:27017/FS_Dev_Case"

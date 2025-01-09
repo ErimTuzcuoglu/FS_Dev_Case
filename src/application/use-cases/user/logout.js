@@ -6,4 +6,3 @@ export default function logout(id, userRepository) {
     return 'Successfull Logout';
   });
 }
-  

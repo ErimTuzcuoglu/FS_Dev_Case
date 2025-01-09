@@ -1,4 +1,4 @@
-import { User } from '../models/User';
+import {User} from '../models/User';
 
 export default function userModelRepository() {
   const getAll = () => User.find();
@@ -18,9 +18,9 @@ export default function userModelRepository() {
     return newUser.save();
   };
 
-  const updateById = (id, { name, email, hashedPassword }) => {
+  const updateById = (id, {name, email, hashedPassword}) => {
     return User.findOneAndUpdate(
-      { _id: id },
+      {_id: id},
       {
         $set: {
           name,
@@ -28,7 +28,7 @@ export default function userModelRepository() {
           hashedPassword,
         },
       },
-      { new: true },
+      {new: true},
     );
   };
 
