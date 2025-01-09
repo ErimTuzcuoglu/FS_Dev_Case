@@ -1,7 +1,7 @@
-import CustomError from '../../errors/CustomError';
-import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import appConfig from '../../../config/appConfig';
+import CustomError from '@application/errors/CustomError';
+import appConfig from '@config/appConfig';
+import CryptService from '@core/services/CryptService';
 
 export default async function login(userDTO) {
   const {
@@ -20,7 +20,7 @@ export default async function login(userDTO) {
 
   // userRepository.updateById(id, updatedUser);
 
-  const isValidCredentials = await bcrypt.compare(password, user.hashedPassword);
+  const isValidCredentials = await CryptService.compare(password, user.hashedPassword);
 
   if (!isValidCredentials) {
     throw new CustomError('Invalid credentials', 400);

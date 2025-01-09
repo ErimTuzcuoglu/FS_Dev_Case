@@ -1,4 +1,4 @@
-import {user as userCases} from '../../application/use-cases';
+import {user as userCases} from '@application/use-cases';
 
 export default function userController(
   userRepository,
@@ -18,7 +18,7 @@ export default function userController(
   const fetchUserById = async (req, res, next) => {
     try {
       const user = await userCases.findById(req.params.id, dbRepository);
-      return res.customResult(user);
+      return res.customResult(user, user ? 200 : 404, !!user);
     } catch (error) {
       return next(error);
     }

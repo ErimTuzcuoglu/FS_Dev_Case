@@ -1,12 +1,12 @@
 import jwt from 'jsonwebtoken';
-import CustomError from '../../application/errors/CustomError';
-import appConfig from '../../config/appConfig';
+import CustomError from '@application/errors/CustomError';
+import appConfig from '@config/appConfig';
 
 export default {
   verify: async (token) => {
     try {
       if (!token) {
-        throw new CustomError('Access denied', 401);
+        throw new CustomError(undefined, 401);
       }
       const result = await jwt.verify(token, appConfig.jwtSecret);
       return result;

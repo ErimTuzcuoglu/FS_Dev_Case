@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import CryptService from '@core/services/CryptService';
 
 export default async function updateById(userDTO) {
   const {
@@ -18,7 +18,7 @@ export default async function updateById(userDTO) {
     throw new CustomError('User not found', 400);
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await CryptService.hash(password);
 
   const updatedUser = {name, email, hashedPassword};
 

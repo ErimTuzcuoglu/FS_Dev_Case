@@ -1,11 +1,11 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import config from './config/appConfig';
-import expressConfig from './core/server/express';
-import routes from './core/server/routes/index';
-import mongoDbConnection from './core/database/mongoDB/connection';
+import config from '@config/appConfig';
+import expressConfig from '@core/server/express';
+import routes from '@core/server/routes/index';
+import mongoDbConnection from '@core/database/mongoDB/connection';
 // middlewares
-import {errorHandlingMiddleware} from './core/server/middlewares/errorHandlingMiddleware';
+import {errorHandlingMiddleware} from '@core/server/middlewares/errorHandlingMiddleware';
 
 const app = express();
 // express.js configuration (middlewares etc.)
@@ -22,7 +22,11 @@ if (process.env.NODE_ENV !== 'test') {
 app.use('/api', routes);
 
 // error handling middleware
-app.use(errorHandlingMiddleware);
+// Important: Never remove next parameter even if it is not used.
+// eslint-disable-next-line no-unused-vars
+app.use((error, req, res, next) => {
+  errorHandlingMiddleware(error, req, res);
+});
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(config.port, () => {

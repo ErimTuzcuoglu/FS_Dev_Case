@@ -1,7 +1,7 @@
-import {authenticateToken} from '../../../application/middlewares';
-import userController from '../../../api/controllers/userController';
-import userDbRepository from '../../../application/repositories/userRepository';
-import userDbRepositoryMongoDB from '../../database/mongoDB/repositories/userModelRepository';
+import {authenticateToken} from '@application/middlewares';
+import userController from '@api/controllers/userController';
+import userDbRepository from '@application/repositories/userRepository';
+import userDbRepositoryMongoDB from '@core/database/mongoDB/repositories/userModelRepository';
 import {Router} from '../router';
 
 const router = Router();

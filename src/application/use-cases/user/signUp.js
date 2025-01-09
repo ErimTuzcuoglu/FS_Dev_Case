@@ -1,5 +1,5 @@
-import CustomError from '../../errors/CustomError';
-import bcrypt from 'bcryptjs';
+import CustomError from '@application/errors/CustomError';
+import CryptService from '@core/services/CryptService';
 
 export default async function signUp(userDTO) {
   const {
@@ -17,7 +17,7 @@ export default async function signUp(userDTO) {
     throw new CustomError('Email already exists', 400);
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await CryptService.hash(password);
 
   const newUser = {
     name,

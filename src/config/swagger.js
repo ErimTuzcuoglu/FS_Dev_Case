@@ -1,4 +1,4 @@
-import docs from '../api/docs';
+import docs from '@api/docs';
 
 export default {
   definition: {

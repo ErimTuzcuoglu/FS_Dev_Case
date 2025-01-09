@@ -27,6 +27,12 @@ module.exports = {
     ],
   },
   resolve: {
+    alias: {
+      '@api': path.resolve(__dirname, 'src/api/'),
+      '@application': path.resolve(__dirname, 'src/application/'),
+      '@config': path.resolve(__dirname, 'src/config/'),
+      '@core': path.resolve(__dirname, 'src/core/'),
+    },
     extensions: ['.js'],
   },
   plugins: [
