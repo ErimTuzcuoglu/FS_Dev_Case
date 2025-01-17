@@ -1,7 +1,7 @@
-import {Router} from '../router';
+import {routerGenerator} from '../routerGenerator';
 import userRouter from './user';
 
-const router = Router();
+const router = routerGenerator();
 
 router.use('/users', userRouter);
 

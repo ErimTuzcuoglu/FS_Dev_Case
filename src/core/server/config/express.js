@@ -1,8 +1,8 @@
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
-import {responseMiddleware} from './middlewares/responseMiddleware';
-import swaggerDocs from './swagger/swagger';
+import {responseMiddleware} from '../middlewares/initial/responseMiddleware';
+import swaggerDocs from './swagger';
 
 export default function expressConfig(app, config) {
   // security middleware

@@ -1,10 +1,10 @@
-import {authenticateToken} from '@application/middlewares';
+import authenticateToken from '@core/server/middlewares/authenticateToken';
 import userController from '@api/controllers/userController';
 import userDbRepository from '@application/repositories/userRepository';
 import userDbRepositoryMongoDB from '@core/database/mongoDB/repositories/userModelRepository';
-import {Router} from '../router';
+import {routerGenerator} from '../routerGenerator';
 
-const router = Router();
+const router = routerGenerator();
 
 const controller = userController(
   userDbRepository,
