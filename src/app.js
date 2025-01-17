@@ -6,6 +6,7 @@ import routes from '@core/server/routes/index';
 import mongoDbConnection from '@core/database/mongoDB/connection';
 // middlewares
 import {errorHandlingMiddleware} from '@core/server/middlewares/errorHandlingMiddleware';
+import { notFound } from '@core/server/middlewares/notFound';
 
 const app = express();
 // express.js configuration (middlewares etc.)
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV !== 'test') {
 // routes for each endpoint
 app.use('/api', routes);
 
+app.use(notFound);
 // error handling middleware
 // Important: Never remove next parameter even if it is not used.
 // eslint-disable-next-line no-unused-vars
